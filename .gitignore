@@ -1,0 +1,75 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+*.local
+
+# Next.js
+.next
+out
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build outputs
+build
+*.tsbuildinfo
+
+# OS files
+Thumbs.db
+.DS_Store
+
+# Supabase
+.branches
+.temp
+supabase/config.toml
+
+# IDE
+.cursor/
+
+# Internal documentation (may contain project IDs / setup notes)
+API_TIMEOUT_GUIDE.md
+CAFETERIA_SERVING_SIZE.md
+FDA_API_CORS_FIX.md
+FDA_API_ISSUE.md
+FDA_API_READY.md
+FDA_API_SETUP.md
+FDA_API_SUCCESS.md
+FDA_INTEGRATION_COMPLETE.md
+HYBRID_APPROACH.md
+IMPLEMENTATION_SUMMARY.md
+KAT_ONLINE_API_SETUP.md
+KOREAN_FOOD_ONLY.md
+MCP_INTEGRATION_COMPLETE.md
+NUTRITION_DB_MIGRATION.md
+OAUTH_REDIRECT_SETUP.md
+QUICK_OAUTH_FIX.md
+RICE_EXPANSION.md
+SPECIAL_FOOD_FIX.md
+SUPABASE_CONNECTION_UNIFIED.md
+SUPABASE_MCP_SETUP.md
+TOSS_PAYMENTS_SETUP.md
+VARIETY_IMPROVEMENT.md
+WEIGHT_ADJUSTMENT.md
+WEIGHT_SYSTEM.md

@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#22c55e"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect x="64" y="64" width="1072" height="502" rx="28" fill="rgba(255,255,255,0.12)"/>
+  <g fill="#ffffff" opacity="0.95">
+    <text x="120" y="220" font-size="54" font-family="system-ui, -apple-system, Segoe UI, sans-serif" font-weight="700">
+      AutoDiet 블로그
+    </text>
+    <text x="120" y="290" font-size="28" font-family="system-ui, -apple-system, Segoe UI, sans-serif" opacity="0.9">
+      정보성 컨텐츠 (정적 파일 기반)
+    </text>
+  </g>
+  <g opacity="0.18" fill="#fff">
+    <circle cx="980" cy="210" r="140"/>
+    <circle cx="880" cy="420" r="90"/>
+  </g>
+</svg>
+
+
