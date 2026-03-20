@@ -272,9 +272,13 @@ API 호출 우선순위:
 | 전류 | 50g |
 
 ### 🎬 시연 영상
-
+**식단 생성**
 ![Image](https://github.com/user-attachments/assets/e4838119-a857-4262-9c00-48544efd9e17)
+
+**영양 분석**
 ![Image](https://github.com/user-attachments/assets/c8845490-adda-4327-ac4c-fc49a87c64ed)
+
+**식단 변경**
 ![Image](https://github.com/user-attachments/assets/a70a80c5-e60b-4205-bef9-1dab62fb7599)
 ---
 
