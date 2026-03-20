@@ -38,7 +38,7 @@
 이 프로젝트는 **바이브 코딩(Vibe Coding)** 방식으로 개발했습니다.<br>
 AI에게 원하는 결과를 설명하고 실행 결과를 보며 진행하는 방식입니다.
 
-**사용 도구:** Cursor, ChatGPT, Lovable
+**사용 도구:** ChatGPT, Lovable, Cursor
 
 **개발 흐름:**
 
