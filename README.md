@@ -271,6 +271,11 @@ API 호출 우선순위:
 | 김치 | 30g |
 | 전류 | 50g |
 
+### 🎬 시연 영상
+
+![Image](https://github.com/user-attachments/assets/e4838119-a857-4262-9c00-48544efd9e17)
+![Image](https://github.com/user-attachments/assets/c8845490-adda-4327-ac4c-fc49a87c64ed)
+![Image](https://github.com/user-attachments/assets/a70a80c5-e60b-4205-bef9-1dab62fb7599)
 ---
 
 ## 핵심 함수 테이블
