@@ -383,12 +383,15 @@ npm start
 
 ---
 
-## Release Notes
+## 🌱 향후 개선 계획
 
-(추가 예정)
+- [ ] AdSense 최종 승인 후 광고 배치
 
 ---
 
-## License
+## 📎 참고자료
 
-(입력 필요)
+<details>
+<summary>ERD 보기</summary>
+<img width="1538" height="802" alt="Image" src="https://github.com/user-attachments/assets/83bc8c32-e5cd-47a2-94b3-2317ada1193d" />
+</details>
