@@ -29,7 +29,7 @@ export function ProfessionalWelcomeScreen({ onNewPlan, onLoadSaved }: WelcomeScr
         </div>
         
         <h2 className="text-4xl font-bold mb-4 font-noto text-white">
-          AI 기반 식단 자동 생성
+          스마트 식단 자동생성
         </h2>
         <p className="text-lg text-gray-300 max-w-2xl mx-auto mb-10 font-noto leading-relaxed">
           영양사가 설계한 규칙을 기반으로, 클릭 몇 번으로 <br />

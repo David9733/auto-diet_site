@@ -37,7 +37,7 @@ export function SourceWelcomeScreen({ onNewPlan, onLoadSaved }: WelcomeScreenPro
           <ChefHat className="w-10 h-10 text-primary-foreground" />
         </div>
         <h2 className="text-3xl font-bold mb-3 font-noto">
-          AI 기반 식단 자동 생성
+          스마트 식단 자동생성
         </h2>
         <p className="text-muted-foreground max-w-lg mx-auto mb-8 font-noto">
           영양사가 설계한 규칙을 기반으로, 클릭 몇 번으로 <br />

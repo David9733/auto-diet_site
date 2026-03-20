@@ -35,7 +35,7 @@ export function ModernWelcomeScreen({ onNewPlan, onLoadSaved }: WelcomeScreenPro
         <div className="flex items-center justify-center gap-2 mb-4">
           <Sparkles className="w-6 h-6 text-amber-500 animate-pulse" />
           <h2 className="text-4xl font-bold font-noto bg-gradient-to-r from-green-600 to-emerald-500 bg-clip-text text-transparent">
-            AI 기반 식단 자동 생성
+            스마트 식단 자동생성
           </h2>
           <Sparkles className="w-6 h-6 text-amber-500 animate-pulse" />
         </div>

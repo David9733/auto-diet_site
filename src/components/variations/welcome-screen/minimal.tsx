@@ -26,7 +26,7 @@ export function MinimalWelcomeScreen({ onNewPlan, onLoadSaved }: WelcomeScreenPr
         </div>
         
         <h2 className="text-2xl font-bold mb-2 font-noto text-gray-900">
-          AI 기반 식단 자동 생성
+          스마트 식단 자동생성
         </h2>
         <p className="text-sm text-gray-600 max-w-md mx-auto mb-6 font-noto leading-relaxed">
           영양사가 설계한 규칙을 기반으로, 클릭 몇 번으로 1주~1달 식단이 자동 생성됩니다.
