@@ -1,3 +1,4 @@
+<img width="1344" height="483" alt="Image" src="https://github.com/user-attachments/assets/c8f1921c-69f0-4665-9c02-d213096feaee" />
 # auto-diet — 급식소 자동 식단 관리 서비스
 
 > 급식소 관리자가 주·월 단위 식단을 자동 생성하고, 영양 정보와 식재료 원가를 실시간으로 확인할 수 있는 웹 서비스입니다.
