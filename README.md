@@ -10,9 +10,9 @@
 
 | 항목 | 내용 |
 |------|------|
-| **개발 기간** | 2025.12 ~ |
+| **개발 기간** | 2025.12 ~ (진행 중) |
 | **프로젝트 유형** | 개인 프로젝트 |
-| **핵심 기술** | Next.js, TypeScript, Supabase |
+| **핵심 기술** | Next.js, TypeScript, Supabase, TanStack Query, Tailwind CSS |
 | **배포 링크** | [바로가기](https://auto-diet.vercel.app/) |
 
 ---
