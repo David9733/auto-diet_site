@@ -393,5 +393,5 @@ npm start
 
 <details>
 <summary>ERD 보기</summary>
-<img width="1538" height="802" alt="Image" src="https://github.com/user-attachments/assets/83bc8c32-e5cd-47a2-94b3-2317ada1193d" />
+<img width="1538" height="802" alt="Image" src="https://github.com/user-attachments/assets/1ae46629-e0e5-4159-bf46-22c90317c4f4" />
 </details>
