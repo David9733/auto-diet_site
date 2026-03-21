@@ -352,8 +352,12 @@ AI 영양 분석 다이얼로그
 | **Tailwind CSS** | 3.4.17 | 유틸리티 클래스로 별도 CSS 파일 없이 컴포넌트 단위 스타일 적용<br>shadcn/ui와 결합해 접근성 기반 컴포넌트를 빠르게 구성 |
 | **shadcn/ui** | - | Radix UI 기반 접근성 컴포넌트를 프로젝트에 직접 소유하여 디자인 커스터마이징 자유도 확보 |
 | **Supabase** | 2.86.2 | Auth·DB·Storage·Edge Functions를 단일 서비스로 통합 관리<br>Edge Functions로 AI API 키를 서버에 격리하여 클라이언트 노출 차단 |
+| **OpenAI API** | - | Supabase Edge Functions에서 GPT-4o-mini를 호출하여 영양 균형 분석 및 대체 메뉴 추천 처리<br>클라이언트에 API 키 노출 없이 서버리스로 운영 |
 | **TanStack Query** | 5.83.0 | 식약처·KAT API 응답을 `staleTime`으로 캐싱하여 중복 네트워크 요청 차단<br>로딩·에러·성공 상태를 선언적으로 관리 |
+| **React Hook Form + Zod** | 7.61.1 / 3.25.76 | 회원가입·로그인 폼의 상태 관리와 스키마 기반 유효성 검사를 선언적으로 처리 |
 | **jsPDF + html2canvas** | 3.0.4 / 1.4.1 | 서버 의존 없이 브라우저에서 주간 식단표를 A4 PDF로 직접 변환·다운로드 |
+| **date-fns** | 3.6.0 | 주차별 날짜 계산, 식단 시작일 기준 날짜 포매팅에 사용 |
+| **Sonner** | 1.7.4 | 식단 저장·오류 등 사용자 액션 결과를 토스트로 즉시 피드백 |
 | **Remark** | 15.0.1 | 별도 CMS 없이 Markdown 파일을 HTML로 변환하여 블로그 운영 |
 | **식약처 Open API** | - | 국내 급식소 환경에 적합한 한국 식품 영양 정보 제공, 100g 기준 수치를 카테고리별 1인분으로 환산 |
 | **KAT Online API** | - | 한국농수산식품유통공사 실시간 도매 시세 데이터로 식재료 원가 계산에 반영 |
@@ -365,6 +369,8 @@ AI 영양 분석 다이얼로그
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 ![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
+![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
+![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
 
 ---
 
