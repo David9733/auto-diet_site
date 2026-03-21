@@ -327,7 +327,7 @@ AI 영양 분석 다이얼로그
 - 카테고리(밥 / 국 / 반찬)별 맥락을 반영한 3가지 대안 반환, 각 항목에 추천 이유 포함
 - 사용자가 선택한 대안으로 원래 메뉴 즉시 교체
 
-### 6. Google Analytics (GA4)
+### 6. Google Analytics 
 
 Next.js `Script` 컴포넌트(`strategy="afterInteractive"`)로 통합하여 페이지 렌더링을 차단하지 않고 측정 스크립트를 로드합니다.
 
