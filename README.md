@@ -170,293 +170,49 @@ AutoDiet - 학교 급식 식단 자동생성 시스템 구축 프롬프트
 프로젝트 개요
 
 한국 학교 급식소 영양사를 위한 주간 식단 자동 생성 및 영양 관리 웹 애플리케이션을 만들어주세요.
-배포 타겟: Vercel (Next.js App Router 기반)
-
-기술 스택
-
-프론트엔드
-
-- Next.js 15+ (App Router, Server/Client Components)
-- React 19+
-- TypeScript 5+
-- Tailwind CSS 3+ (커스텀 애니메이션: fade-in, slide-in, scale-in, shimmer)
-- shadcn/ui (40개 이상 컴포넌트 사용)
-- Lucide React (아이콘)
-- GSAP (애니메이션)
-- 폰트: Noto Sans KR (한글) + Inter (영문)
-
-백엔드/데이터
-
-- Supabase (PostgreSQL, Auth, Edge Functions)
-- Next.js API Routes (외부 API 프록시 역할)
-- OpenAI API (GPT-4o-mini, 식단 분석용)
-
-외부 API
-
-- 식약처(FDA) 공공 API: 식품 영양성분 데이터베이스
-- katOnline API: 농수산물 도매시장 실시간 가격 조회
-- 토스페이먼츠 API: 결제/구독 처리
-
-라이브러리
-
-- TanStack React Query 5+ (서버 상태 관리)
-- React Hook Form 7+ + Zod (폼 유효성 검사)
-- jsPDF + jsPDF AutoTable (PDF 내보내기)
-- html2canvas (HTML → 이미지 변환)
-- Remark + Remark GFM (블로그 마크다운 파싱)
-- Gray Matter (마크다운 front matter)
-- Sonner (토스트 알림)
 
 ---
-데이터 모델 (TypeScript 타입)
+핵심 기능
 
-// 식품 카테고리
-type FoodCategory = 'rice' | 'soup' | 'kimchi' | 'vegetable' | 'meat' | 'side'
-
-// 식사 유형
-type MealType = 'breakfast' | 'lunch' | 'dinner'
-
-// 특식 종류
-type CuisineType = 'japanese' | 'chinese' | 'western' | 'snack'
-
-// 메뉴 아이템
-interface MenuItem {
-  id: string
-  name: string
-  category: FoodCategory
-  calories: number
-  protein: number
-  carbs: number
-  fat: number
-  sodium: number
-  allergens: string[]
-  cost: number
-  mainIngredients?: string[]
-  weight?: number  // 빈도 가중치 (1-30, 높을수록 자주 등장)
-}
-
-// 식사 (한 끼)
-interface Meal {
-  id: string
-  type: MealType
-  rice: MenuItem
-  soup: MenuItem
-  sideDishes: MenuItem[]
-  totalCalories: number
-  totalProtein: number
-  totalCarbs: number
-  totalFat: number
-  totalSodium: number
-  totalCost: number
-  allergens: string[]
-  hasNutritionWarning: boolean
-  hasCostWarning: boolean
-  isSpecialMeal?: boolean
-  cuisineType?: CuisineType
-}
-
-// 하루 식단
-interface DayMealPlan {
-  id: string
-  date: string
-  dayOfWeek: string
-  meals: Meal[]
-  snacks?: SnackMeal[]
-  isNotOperating?: boolean
-}
-
-// 주간 식단
-interface WeekMealPlan {
-  id: string
-  weekNumber: number
-  startDate: string
-  endDate: string
-  days: DayMealPlan[]
-}
-
-// 급식소 설정
-interface StoreSettings {
-  storeName: string
-  mealsPerDay: 1 | 2 | 3
-  mealCombination: string  // 어떤 식사 운영하는지
-  daysPerWeek: number      // 1-7
-  sideDishCount: number    // 반찬 개수
-  servingCount: number     // 급식 인원수
-  budgetPerMeal: number    // 1인당 식재료비 예산
-  costRatio: number        // 예산 대비 허용 비율(%)
-  snackMorning: boolean
-  snackAfternoon: boolean
-  snackEvening: boolean
-  watchAllergens?: string[]  // 감시할 알레르기 항목들
-}
+1. 회원가입 / 로그인 및 사용자별 설정 저장 (Google, Kakao OAuth 포함)
+2. 주간/월간 식단 자동 생성 (밥·국·반찬 조합, 메뉴 중복 최소화)
+3. 영양소(칼로리, 탄수화물, 단백질, 지방, 나트륨) 자동 반영
+4. 알레르기 항목 경고 표시 및 감시 설정
+5. 식재료 원가 기반 예산 계산 및 초과 경고
+6. 특정 반찬·한 끼·하루 단위 부분 재생성
+7. 식단 저장, 이력 관리, 복사 및 재사용
+8. PDF / CSV 식단표 다운로드
+9. 인원 수, 운영 일수, 반찬 구성 등 커스터마이징 설정
+10. AI 기반 영양 균형 분석 및 개선 제안
+11. 특별식(일식·중식·양식·간식) 설정 기능
+12. 외부 영양 DB 및 실시간 식재료 시세 연동
 
 ---
-페이지/라우트 구조
+사용자 흐름
 
-경로                       | 목적                                               | 인증 필요
-/                          | 메인 홈 (웰컴스크린 + 식단 편집기 + 통계)          | 기능 사용 시 필요
-/auth                      | 로그인/회원가입/비밀번호 찾기 (Google/Kakao OAuth) | 불필요
-/blog                      | 정적 마크다운 블로그 (페이지네이션)                | 불필요
-/blog/[slug]               | 블로그 포스트 상세                                 | 불필요
-/contact                   | 문의하기                                           | 불필요
-/privacy                   | 개인정보처리방침                                   | 불필요
-/api/fda/search            | 식약처 API 프록시 (keyword, pageNo, numOfRows)     | 공개
-/api/fda/category          | 카테고리별 식품 조회                               | 공개
-/api/fda/detail            | 특정 식품 영양 상세 조회                           | 공개
-/api/kat-online/trades     | 도매시장 가격 프록시                               | 공개
-/api/toss/confirm          | 토스 결제 확인                                     | 공개
-/api/toss/order            | 결제 주문 생성                                     | 공개
-/api/toss/billing/issue    | 구독 빌링 발급                                     | 공개
-/api/toss/billing/charge   | 구독 빌링 청구                                     | 공개
-
----
-주요 컴포넌트
-
-레이아웃
-- Header: 전체 네비게이션, 로그인 상태 표시
-- Providers: React Query + Tooltip Provider + Toast 설정
-
-대시보드 (메인 페이지)
-- WelcomeScreen: 신규 사용자 소개 및 CTA 버튼
-- SettingsPanel: 급식소 설정 패널 (일일 식수, 예산, 알레르기 등)
-- WeeklyMealPlan: 주간 식단 메인 뷰 (날짜별 컬럼)
-- DayColumn: 하루 식단 컬럼
-- MealCard: 한 끼 식단 카드 (밥, 국, 반찬)
-- StatsCard: KPI 카드 (생성된 식단 수, 경고 수, 비용)
-
-기능 다이얼로그
-- SavedPlansDialog: 저장된 식단 불러오기
-- HistoryDialog: 식단 히스토리 조회/불러오기
-- ExportDialog: CSV/PDF 내보내기
-- AIAnalysisDialog: AI 식단 분석 (OpenAI)
-- AIAnalyticsDialog: 실시간 영양 분석
-- AIAlternativeDialog: AI 대체 메뉴 제안
-- CustomInputDialog: 커스텀 메뉴 직접 입력
-- SpecialMealDialog: 특식 설정 (일식/중식/양식)
-
-유효성/표시
-- NutritionDetails: 영양 정보 상세
-- CostDetails: 비용 상세 및 경고
-- AllergenWarning: 알레르기 호환성 경고
-
----
-핵심 비즈니스 로직
-
-1. 식단 자동 생성 알고리즘 (mealGenerator.ts)
-
-- 설정에 따른 1-4주 분량 식단 생성
-- 중복 방지: 4주 단위로 메뉴 사용 이력 추적
-- 가중치 랜덤 선택: MenuItem의 weight(1-30)에 비례한 확률로 선택
-- 재료 충돌 감지: 국/김치 조합 충돌 방지
-- 특식 처리: 일식(우동, 카레, 오므라이스), 중식(짜장면, 짬뽕), 양식 변형
-
-2. 영양 정보 보강 (nutritionEnricher.ts)
-
-- 식품명으로 식약처 API 검색
-- 폴백 계층:
-  a. Supabase 캐시 (24시간 TTL)
-  b. localStorage 캐시 (24시간 TTL, 키: nutrition_cache_v1)
-  c. 하드코딩된 샘플 데이터
-- 영양 경고: 칼로리 >600kcal 또는 <200kcal, 나트륨 >1200mg
-
-3. 식재료 비용 계산 (costEnricher.ts)
-
-- 식품명 → 도매 상품명 매핑
-- katOnline API로 실시간 가격 조회 (가격/kg → 가격/100g → 1인분 가격)
-- 비용 경고: budgetPerMeal × costRatio% 초과 시 플래그
-
-4. 알레르기 관리 (allergenValidator.ts)
-
-- 각 MenuItem별 알레르기 하드코딩 매핑
-- 밥+국+반찬 알레르기 누적 합산
-- 사용자 watchAllergens 목록과 교차 검사
-
----
-인증 (Supabase Auth)
-
-- 이메일/비밀번호 회원가입 (이메일 인증 포함)
-- OAuth: Google, Kakao
-- 세션: localStorage 저장 (sb-*-auth-token)
-- 로그아웃 시 모든 auth 토큰 완전 제거 (WebView 엣지케이스 포함)
-- 기능 접근 시 requireAuth() 게이팅
-
----
-Supabase 데이터베이스 테이블
-
--- 급식소 설정
-store_settings (
-  id, user_id, store_name, meals_per_day,
-  days_per_week, side_dish_count, serving_count,
-  budget_per_meal, cost_ratio, snack_morning,
-  snack_afternoon, snack_evening, watch_allergens,
-  created_at, updated_at
-)
-
--- 저장된 식단 계획
-meal_plans (
-  id, user_id, name, week_data (JSONB),
-  week_number, start_date, end_date,
-  created_at, updated_at
-)
-
--- 영양 정보 캐시 (식약처 API 절약)
-nutrition_cache (
-  id, food_name, nutrition_data (JSONB),
-  expires_at, created_at
-)
-
--- 비용 캐시 (도매시장 API 절약)
-cost_cache (
-  id, ingredient_name, price_per_kg,
-  trade_date, expires_at, created_at
-)
-
----
-AI 분석 (Supabase Edge Function)
-
-함수명: ai-analyze-nutrition
-
-입력: 주간 식단 데이터 + 예산 + 알레르기 설정
-
-출력 JSON 형식:
-{
-  "overallScore": 78,
-  "summary": "영양 균형은 좋으나 나트륨이 다소 높습니다.",
-  "nutritionAnalysis": {
-    "calories": { "status": "적정", "message": "하루 평균 칼로리가 적정 범위입니다." },
-    "sodium": { "status": "과다", "message": "나트륨 섭취량이 기준치를 초과합니다." },
-    "protein": { "status": "부족", "message": "단백질 보충이 필요합니다." },
-    "variety": { "status": "좋음", "message": "다양한 식품군이 균형 있게 구성되었습니다." }
-  },
-  "improvements": [
-    { "priority": "high", "category": "영양", "suggestion": "저염 조리법 적용을 권장합니다." }
-  ],
-  "positives": ["다양한 채소 반찬 구성", "주 2회 이상 생선 제공"]
-}
+1단계: 회원가입 및 로그인
+2단계: 급식소 설정 입력 (운영 일수, 식사 횟수, 반찬 수, 인원, 예산, 알레르기)
+3단계: 식단 생성 (1주 / 2주 / 1달 선택)
+4단계: 식단 검토 및 수정 (일부 재생성, 전체 재생성, 특별식 설정)
+5단계: 저장 및 다운로드
 
 ---
 샘플 메뉴 데이터
 
-600개 이상의 하드코딩된 메뉴 아이템 필요:
-- 밥류: 흰쌀밥, 잡곡밥, 현미밥, 콩밥 등 (가중치 포함)
-- 국류: 된장국, 미역국, 김치찌개, 부대찌개 등 50종+
-- 김치류: 배추김치, 깍두기, 열무김치 등 15종+
-- 나물/채소: 시금치무침, 콩나물무침, 도라지무침 등 80종+
-- 육류: 불고기, 제육볶음, 닭갈비, 돈까스 등 60종+
-- 기타 반찬: 계란말이, 두부조림, 어묵볶음 등 100종+
-
-각 아이템에 calories, protein, carbs, fat, sodium, allergens, cost, weight 포함
+600개 이상의 메뉴 아이템 필요:
+- 밥류, 국류, 김치류, 나물/채소류, 육류, 기타 반찬류
+- 각 아이템에 영양 정보, 알레르기, 원가, 빈도 가중치 포함
 
 ---
 UI/UX 요구사항
 
-- 다크 모드 지원 (CSS 변수 기반)
+- 다크 모드 지원
 - 모바일 퍼스트 반응형 디자인
 - 한국어 UI 전체 (영어 혼용 최소화)
 - 주간 식단을 날짜별 컬럼으로 표시
 - 드래그 앤 드롭으로 메뉴 이동/교체
 - 메뉴 카드 우클릭 컨텍스트 메뉴 (교체, 삭제, 복사 등)
-- 식단 생성 시 로딩 애니메이션 (shimmer 효과)
+- 식단 생성 시 로딩 애니메이션
 - 영양 경고/비용 경고를 배지로 시각화
 
 ---
@@ -466,33 +222,18 @@ UI/UX 요구사항
 - PDF: A4 가로 형식, 인쇄 최적화된 주간 식단표
 
 ---
-결제/구독 (토스페이먼츠)
+결제/구독
 
-- 일회성 결제 + 정기 구독 모두 지원
-- 구독 플랜: 무료(제한적) / 프리미엄(전체 기능)
-- 빌링키 발급 → 자동 청구 구조
-
----
-환경 변수 목록
-
-NEXT_PUBLIC_SUPABASE_URL=
-NEXT_PUBLIC_SUPABASE_ANON_KEY=
-SUPABASE_SERVICE_ROLE_KEY=
-FDA_API_KEY=           # 식약처 공공데이터포털 API 키
-KATONLINE_API_KEY=     # katOnline 도매시장 API 키
-TOSS_SECRET_KEY=       # 토스페이먼츠 시크릿 키
-NEXT_PUBLIC_TOSS_CLIENT_KEY=
-OPENAI_API_KEY=        # Supabase Edge Function에서 사용
-NEXT_PUBLIC_GA_ID=     # Google Analytics
+- 무료(제한적) / 프리미엄(전체 기능) 구독 플랜
+- 일회성 결제 및 정기 구독 모두 지원
 
 ---
 추가 구현 사항
 
-- Google Analytics 4 연동
-- Google AdSense 연동
+- Google Analytics 연동
 - SEO 최적화 (메타태그, OG 태그)
-- 블로그 (/blog): /content/posts/ 폴더의 .md 파일들을 정적으로 렌더링
-- 문의하기 폼 (/contact): 이메일 발송 연동
+- 블로그 기능 (마크다운 기반 정적 렌더링)
+- 문의하기 폼 (이메일 발송 연동)
 
 ```
 
