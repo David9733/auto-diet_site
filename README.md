@@ -445,12 +445,7 @@ npm run dev
 npm run build
 npm start
 ```
-
-개발 서버: `http://localhost:3000`
-
-### 주요 라이브러리 버전
-
-`package.json` 참고: [package.json](./package.json)
+[package.json](./package.json)
 
 ---
 
