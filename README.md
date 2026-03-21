@@ -309,22 +309,7 @@ AI 영양 분석 다이얼로그
 - 식약처 API의 100g 기준 영양 정보를 카테고리별 급식소 1인분(밥 210g, 국 250ml, 육류 80g 등)으로 환산
 - 칼로리 총량 외에 탄단지 비율(탄수화물 45-65%, 단백질 10-35%, 지방 20-35%)이 권장 범위에 드는지 별도 검증
 
-### 4. 백그라운드 작업 취소 토큰 패턴
-
-새 식단 생성 또는 로그아웃 시, 이전 백그라운드 보강 결과가 화면을 덮어쓰는 문제를 방지합니다.
-
-```typescript
-const jobId = ++enrichJobIdRef.current;
-
-// jobId 불일치(새 식단 생성) 또는 userRef 없음(로그아웃) 중 하나라도 해당되면 반영 차단
-const canceled = () => jobId !== enrichJobIdRef.current || !userRef.current;
-if (canceled()) return;
-```
-
-- 새 작업 시작마다 `enrichJobIdRef`를 증가시켜 이전 작업 무효화
-- `userRef`는 `useRef`로 세션을 추적, 비동기 클로저 안에서도 최신 로그인 상태 확인
-
-### 5. API 안정성 — 재시도 & Rate Limit
+### 4. API 안정성 — 재시도 & Rate Limit
 
 공공 API의 불안정성에 대응하는 지수 백오프와 토큰 버킷 Rate Limiter를 구현했습니다.
 
@@ -333,7 +318,7 @@ if (canceled()) return;
 - KAT Online 키 오류(`KAT_ONLINE_KEY_MISSING`): 재시도 없이 즉시 차단
 - 요청 규모에 따라 토큰 소비량 차등 적용 (대량 조회는 토큰 2개 소비)
 
-### 6. 다중 주차 식단 관리
+### 5. 다중 주차 식단 관리
 
 주차 추가·삭제·순서 변경·시작일 변경 시 모든 주차의 날짜와 번호를 일괄 재계산합니다.
 
@@ -390,6 +375,17 @@ if (canceled()) return;
 **문제**: 사용자가 식단 생성 후 로그아웃하거나 새로운 식단을 다시 생성하면, 이전 백그라운드 보강 작업이 완료되면서 새 화면을 이전 식단으로 덮어쓰는 버그가 발생했습니다.
 
 **개선**: `enrichJobIdRef`를 이용한 취소 토큰 패턴을 구현했습니다. 새 작업이 시작될 때마다 ID를 증가시키고, 백그라운드 작업 완료 시점에 현재 ID와 비교하여 결과 반영 여부를 결정합니다.
+
+```typescript
+const jobId = ++enrichJobIdRef.current;
+
+// jobId 불일치(새 식단 생성) 또는 userRef 없음(로그아웃) 중 하나라도 해당되면 반영 차단
+const canceled = () => jobId !== enrichJobIdRef.current || !userRef.current;
+if (canceled()) return;
+```
+
+- 새 작업 시작마다 `enrichJobIdRef`를 증가시켜 이전 작업 무효화
+- `userRef`는 `useRef`로 세션을 추적, 비동기 클로저 안에서도 최신 로그인 상태 확인
 
 ---
 
