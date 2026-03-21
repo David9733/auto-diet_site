@@ -329,8 +329,10 @@ AI 영양 분석 다이얼로그
 
 ### 6. Google Analytics
 
-Next.js `Script` 컴포넌트 2개(`strategy="afterInteractive"`)로 gtag.js 로드와 초기화를 분리하여 페이지 렌더링을 차단하지 않고 측정 스크립트를 통합했습니다.
+Next.js `Script` 컴포넌트(`strategy="afterInteractive"`)로 GA4를 통합했습니다.
 
+- `<body>` 내 Script 2개로 분리 — gtag.js 외부 로드 + `window.dataLayer` 초기화 인라인 스크립트
+- `afterInteractive` 전략으로 페이지 인터랙티브 전환 이후 실행 → 초기 렌더링 성능 보호
 - 페이지뷰·세션·사용자 참여도·기기 정보를 GA4 자동 수집으로 측정
 - 주요 페이지별 유입 경로, 이탈 구간 분석 → 기능 개선 우선순위 결정에 활용
 
