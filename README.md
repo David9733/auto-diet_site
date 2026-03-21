@@ -313,9 +313,12 @@ KAT Online API로 원가 정보 보강 → 화면 업데이트
 const jobId = ++enrichJobIdRef.current;
 
 // 백그라운드 작업 완료 시점에 취소 여부 확인
+// jobId 불일치(새 식단 생성) 또는 userRef 없음(로그아웃) 중 하나라도 해당되면 차단
 const canceled = () => jobId !== enrichJobIdRef.current || !userRef.current;
 if (canceled()) return; // 이전 작업 결과 반영 차단
 ```
+
+취소 조건을 두 개로 분리한 이유: 새 식단을 생성하지 않아도 로그아웃하면 이전 사용자의 보강 결과가 다음 화면에 잠깐 노출될 수 있기 때문입니다. `userRef`는 `useRef`로 세션을 추적하여 비동기 클로저 안에서도 최신 로그인 상태를 확인합니다.
 
 
 ### 다단계 메뉴 중복 방지
@@ -351,6 +354,8 @@ API 호출 우선순위:
 3. 식약처 API 직접 호출
 4. 하드코딩 기본값 (API 실패 시 fallback)
 ```
+
+**협력적 캐싱**: Supabase DB 캐시는 전체 사용자가 공유합니다. A 사용자가 "된장찌개"를 처음 조회해 API를 호출하면 그 결과가 DB에 저장되고, 이후 B 사용자가 같은 메뉴를 조회할 때는 API 없이 DB에서 즉시 반환합니다. 로그인 시에는 LocalStorage에 쌓인 캐시를 Supabase DB로 마이그레이션(`migrateLocalStorageToDatabase()`)하여 본인의 조회 결과도 공유에 기여합니다.
 
 
 ### 급식소 1인분 환산
@@ -433,6 +438,82 @@ weekNumber 1..N 일괄 재부여
 ```
 
 5일 운영이어도 주차 간 간격은 항상 7일을 유지합니다. 실제 달력 날짜와 주차 번호가 항상 일치하도록 하기 위해서입니다.
+
+
+### 가중치 기반 확률적 메뉴 선택
+
+메뉴를 단순 랜덤이 아닌 **가중치 확률**로 선택합니다. 각 메뉴 데이터에 `weight` 값을 부여해 자주 먹는 메뉴는 높은 확률로, 드문 메뉴는 낮은 확률로 선택됩니다.
+(`src/utils/mealGenerator.ts` → `getWeightedRandomItem()`)
+
+```typescript
+function getWeightedRandomItem(items: MenuItem[]): MenuItem {
+  const totalWeight = items.reduce((sum, item) => sum + (item.weight || 1), 0);
+  let random = Math.random() * totalWeight;
+  for (const item of items) {
+    random -= item.weight || 1;
+    if (random <= 0) return item;
+  }
+  return items[items.length - 1];
+}
+```
+
+예: 인기 반찬은 `weight: 30`, 드문 반찬은 `weight: 4`로 설정합니다. 완전 무작위 선택은 자주 먹지 않는 메뉴가 지나치게 많이 나오고, 중복 방지 로직과 충돌할 때 후보 소진이 빨라지는 문제가 있어 가중치 방식을 택했습니다.
+
+
+### 목표 기반 원가 최적화
+
+끼니 생성 시 예산에 가장 근접한 조합을 찾기 위해 **다중 시도 휴리스틱**을 사용합니다.
+(`src/utils/mealGenerator.ts` → `generateMeal()`)
+
+```
+목표 원가 설정
+  ↓
+최대 N회 랜덤 조합 시도 (N은 예산에 따라 동적 결정, 18~120회)
+  ↓
+각 시도마다 목표 원가와의 거리로 점수 계산
+  ↓
+가장 낮은 점수(목표에 가장 근접)를 기록
+  ↓
+허용 오차(예산의 3%) 내 조합을 찾으면 조기 종료
+```
+
+원가 초과 조합은 동일 금액 차이의 미달 조합보다 점수를 약간 높게 계산합니다. 영양사 입장에서 예산 초과가 미달보다 문제가 크기 때문입니다.
+
+
+### 특별식 반찬 풀 전환
+
+특별식(일식·중식·양식)이 설정되면 해당 카테고리 전용 반찬 풀로 전환하여 **음식 카테고리 통합성**을 유지합니다.
+(`src/utils/mealGenerator.ts` → `generateSpecialMeal()`)
+
+```
+일반식: 공용 반찬 풀 사용
+  ↓ 특별식 설정 시
+1단계: 해당 카테고리 전용 풀에서 반찬 선택 (일식 → 일식 반찬만)
+  ↓ 전용 풀이 부족하면
+2단계: 공용 반찬 풀로 확장 폴백 (빈 식판 방지)
+```
+
+각 단계에서 독립적으로 알레르기 필터링과 식재료 충돌 검사를 수행하여, 특별식 전환 시에도 안전성 검사가 생략되지 않습니다.
+
+
+### 매크로 비율 기반 영양 검증
+
+칼로리 총량만이 아니라 **탄수화물·단백질·지방 비율**이 권장 범위에 드는지 검증합니다.
+(`src/utils/nutritionValidator.ts`)
+
+| 영양소 | 권장 비율 | 기준 |
+|--------|---------|------|
+| 탄수화물 | 45~65% | 한국영양학회 |
+| 단백질 | 10~35% | 한국영양학회 |
+| 지방 | 20~35% | 한국영양학회 |
+
+```typescript
+// 탄수화물 1g = 4kcal, 단백질 1g = 4kcal, 지방 1g = 9kcal
+const totalMacroCalories = (carbs * 4) + (protein * 4) + (fat * 9);
+const carbsRatio = Math.round((carbs * 4 / totalMacroCalories) * 100);
+```
+
+칼로리 부족·나트륨 초과·단백질 부족·비율 편향을 각각 독립적으로 판단하고, 심각도에 따라 `warning`/`error`로 구분합니다.
 
 
 ### 🎬 시연 영상
