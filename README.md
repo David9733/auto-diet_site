@@ -465,11 +465,8 @@ if (canceled()) return;
 - KAT Online API 키
 - Toss Payments 키 (결제 기능 사용 시)
 
-### 환경변수 설정
-
-`.env.local` 파일을 생성하고 아래 항목을 입력합니다.
-
-```env
+환경변수 설정
+```
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 NEXT_PUBLIC_FDA_API_KEY=your_fda_api_key
@@ -490,7 +487,6 @@ npm run dev
 npm run build
 npm start
 ```
-[package.json](./package.json)
 
 ---
 
