@@ -354,11 +354,14 @@ AI 영양 분석 다이얼로그
 | **TanStack Query** | 5.83.0 | 식약처·KAT API 응답을 `staleTime`으로 캐싱하여 중복 네트워크 요청 차단<br>로딩·에러·성공 상태를 선언적으로 관리 |
 | **React Hook Form** | 7.61.1 | 회원가입·로그인 폼의 상태 관리를 선언적으로 처리 |
 | **Zod** | 3.25.76 | React Hook Form과 결합하여 스키마 기반 유효성 검사를 빌드 단계에서 타입 안전하게 처리 |
-| **jsPDF** | 3.0.4 | 브라우저에서 서버 의존 없이 주간 식단표를 A4 PDF로 직접 생성 |
+| **jsPDF** | 3.0.4 | 브라우저에서 서버 의존 없이 주간 식단표를 A4 PDF로 직접 생성<br>jspdf-autotable(5.0.2)로 테이블 레이아웃 자동 렌더링 |
 | **html2canvas** | 1.4.1 | 식단표 HTML을 캔버스로 변환하여 jsPDF에 이미지로 삽입 |
 | **date-fns** | 3.6.0 | 주차별 날짜 계산, 식단 시작일 기준 날짜 포매팅에 사용 |
 | **Sonner** | 1.7.4 | 식단 저장·오류 등 사용자 액션 결과를 토스트로 즉시 피드백 |
-| **Remark** | 15.0.1 | 별도 CMS 없이 Markdown 파일을 HTML로 변환하여 블로그 운영 |
+| **Remark** | 15.0.1 | 별도 CMS 없이 Markdown 파일을 HTML로 변환하여 블로그 운영<br>remark-gfm으로 GitHub Flavored Markdown 지원, remark-html로 HTML 직렬화 |
+| **Recharts** | 2.15.4 | 대시보드에서 영양소·비용 데이터를 차트로 시각화 |
+| **GSAP** | 3.14.2 | 랜딩 페이지 ScrollReveal·GridMotion·SpotlightCard 등 스크롤 기반 애니메이션 구현 |
+| **react-day-picker** | 9.13.0 | 식단 날짜 선택 캘린더 UI 컴포넌트 |
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
@@ -367,6 +370,8 @@ AI 영양 분석 다이얼로그
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 ![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
+![Recharts](https://img.shields.io/badge/Recharts-22B5BF?style=for-the-badge&logo=recharts&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
 
 ---
 
