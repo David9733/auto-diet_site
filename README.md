@@ -327,6 +327,14 @@ AI 영양 분석 다이얼로그
 - 카테고리(밥 / 국 / 반찬)별 맥락을 반영한 3가지 대안 반환, 각 항목에 추천 이유 포함
 - 사용자가 선택한 대안으로 원래 메뉴 즉시 교체
 
+### 6. Google Analytics (GA4)
+
+Next.js `Script` 컴포넌트(`strategy="afterInteractive"`)로 통합하여 페이지 렌더링을 차단하지 않고 측정 스크립트를 로드합니다.
+
+- 페이지뷰·세션·사용자 참여도·기기 정보를 GA4 자동 수집으로 측정
+- 주요 페이지별 유입 경로 파악, 사용자 이탈 구간 분석, 기능 개선 우선순위 결정에 활용
+- `afterInteractive` 전략으로 초기 렌더링 성능에 영향 없이 스크립트 로드
+
 ### 🎬 시연 영상
 
 **식단 생성**
@@ -347,6 +355,7 @@ AI 영양 분석 다이얼로그
 
 | 기술 | 버전 | 선택 이유 |
 |------|------|-----------|
+| **React** | 19.2.3 | UI 렌더링 기반 라이브러리; hooks 기반 컴포넌트 모델과 React 19의 concurrent 렌더링으로 식단 생성 중 UI 응답성 유지 |
 | **Next.js** | 16.0.10 | App Router 기반 API Route로 Toss Payments 결제 처리를 서버에서 분리<br>서버 컴포넌트에서 Supabase 직접 쿼리로 클라이언트 번들 크기 절감 |
 | **TypeScript** | 5.8.3 | 식단·메뉴·영양 데이터 구조가 복잡하여 인터페이스 선언으로 빌드 단계에서 타입 오류 사전 차단 |
 | **Tailwind CSS** | 3.4.17 | 유틸리티 클래스로 별도 CSS 파일 없이 컴포넌트 단위 스타일 적용<br>shadcn/ui와 결합해 접근성 기반 컴포넌트를 빠르게 구성 |
@@ -362,6 +371,10 @@ AI 영양 분석 다이얼로그
 | **Recharts** | 2.15.4 | 대시보드에서 영양소·비용 데이터를 차트로 시각화 |
 | **GSAP** | 3.14.2 | 랜딩 페이지 ScrollReveal·GridMotion·SpotlightCard 등 스크롤 기반 애니메이션 구현 |
 | **react-day-picker** | 9.13.0 | 식단 날짜 선택 캘린더 UI 컴포넌트 |
+| **lucide-react** | 0.462.0 | 전체 UI 아이콘 시스템; 버튼·메뉴·상태 표시 등 코드 전반에서 아이콘 렌더링에 사용 |
+| **Embla Carousel** | 8.6.0 | 랜딩 페이지 및 대시보드 내 캐러셀 UI 컴포넌트 |
+| **next-themes** | 0.4.6 | 다크/라이트 모드 전환 및 시스템 테마 연동 |
+| **gray-matter** | 4.0.3 | 블로그 Markdown 파일의 frontmatter(제목·날짜·태그 등) 파싱 — Remark와 함께 사용 |
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
@@ -372,6 +385,7 @@ AI 영양 분석 다이얼로그
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
 ![Recharts](https://img.shields.io/badge/Recharts-22B5BF?style=for-the-badge&logo=recharts&logoColor=white)
 ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
+![next-themes](https://img.shields.io/badge/next--themes-000000?style=for-the-badge&logo=next.js&logoColor=white)
 
 ---
 
