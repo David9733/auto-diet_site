@@ -313,7 +313,7 @@ AI 영양 분석 다이얼로그
 
 주간 식단 전체에 대해 AI API를 호출해 영양 균형을 분석하고 개선 제안을 제공합니다.
 
-- Supabase Edge Functions를 통해 서버리스로 AI API 호출, 클라이언트에 API 키 노출 없이 처리
+- Supabase Edge Functions를 통해 서버리스로 OpenAI API 호출, 클라이언트에 API 키 노출 없이 처리
 - 칼로리, 단백질, 나트륨, 다양성 지표별 상태를 개별 분석하여 `overallScore(0~100)` 산출
 - 우선순위(high / medium / low)가 부여된 개선 제안 목록과 잘된 점 목록을 함께 반환
 - 영양 균형, 메뉴 다양성, 원가 효율성, 알레르기 안전성 4개 관점에서 종합 평가
