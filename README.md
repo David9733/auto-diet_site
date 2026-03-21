@@ -334,11 +334,15 @@ isMenuAllowed() 판단 순서:
 
 밥·국·김치류는 매일 등장하는 것이 자연스러우므로 중복 체크 대상에서 제외했습니다.
 
+다중 주차 생성 시에는 `generateWeekMealPlan()`이 `prevWeekMenus`·`nextWeekMenus`·`monthMenus`를 컨텍스트로 전달받아, 주차 경계를 넘는 중복도 같은 로직으로 차단합니다.
+
 
 ### 24시간 캐싱 전략
 
 식약처 API는 무료 호출량 제한(1,000건/일)이 있어, LocalStorage에 24시간 캐시를 구성했습니다.
 첫 호출 후 동일 메뉴는 캐시에서 즉시 반환하며, 로그인 시 LocalStorage → Supabase DB로 마이그레이션합니다.
+
+영양 보강은 주간→일→끼니 3단계 `Promise.all`로 병렬 처리합니다. 캐시 히트율이 높을수록 실질 대기 시간이 크게 줄어드는 구조입니다.
 
 ```
 API 호출 우선순위:
@@ -442,19 +446,6 @@ weekNumber 1..N 일괄 재부여
 ![Image](https://github.com/user-attachments/assets/a70a80c5-e60b-4205-bef9-1dab62fb7599)
 ---
 
-## 핵심 함수 테이블
-
-| 함수 | 위치 | 설명 |
-|------|------|------|
-| `generateWeekMealPlan()` | `src/utils/mealGenerator.ts` | 1주치 식단 생성. 중복 방지 컨텍스트와 이전 주차 메뉴를 받아 처리 |
-| `isMenuAllowed()` | `src/utils/menuDuplicationChecker.ts` | 5단계 중복 조건을 순차 검사하여 메뉴 허용 여부 반환 |
-| `enrichWeekNutrition()` | `src/services/nutritionEnricher.ts` | 주간 식단의 모든 메뉴를 병렬로 영양 보강 처리 |
-| `enrichWeekCost()` | `src/services/costEnricher.ts` | 주간 식단의 모든 메뉴를 KAT Online API로 원가 보강 처리 |
-| `getCafeteriaServingSize()` | `src/services/nutritionEnricher.ts` | 메뉴명 기반으로 급식소 1인분 기준(g/ml) 반환 |
-| `normalizeWeekPlans()` | `src/app/page.tsx` | 주차 순서 변경 시 weekNumber와 날짜를 일괄 재정렬 |
-| `enrichDataInBackground()` | `src/app/page.tsx` | jobId 취소 토큰으로 이전 보강 작업 차단 후 영양→원가 순 보강 |
-
----
 
 ## 🛠️ 기술 스택 및 선택 이유
 
