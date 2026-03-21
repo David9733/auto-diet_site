@@ -315,7 +315,6 @@ AI 영양 분석 다이얼로그
 
 - 지연 시간: `initialDelay × 2^attempt ± 20% 지터`로 병렬 재시도가 동시에 몰리는 것을 방지
 - 429 Rate Limit: 기본 지연 × 1.8 추가 가중, Retry-After 헤더가 있으면 서버 지시 우선 적용
-- KAT Online 키 오류(`KAT_ONLINE_KEY_MISSING`): 재시도 없이 즉시 차단
 - 요청 규모에 따라 토큰 소비량 차등 적용 (대량 조회는 토큰 2개 소비)
 
 ### 5. 다중 주차 식단 관리
