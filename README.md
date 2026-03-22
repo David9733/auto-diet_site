@@ -358,14 +358,14 @@ AI 영양 분석 다이얼로그
 |------|------|-----------|
 | **React** | 19.2.3 | hooks 기반 컴포넌트 모델과 React 19의 concurrent 렌더링으로 UI 응답성 유지 |
 | **Next.js** | 16.0.10 | App Router 기반 API Route로 Toss Payments 결제 처리를 서버에서 분리<br>서버 컴포넌트에서 Supabase 직접 쿼리로 클라이언트 번들 크기 절감 |
-| **TypeScript** | 5.8.3 | 식단·메뉴·영양 데이터 구조가 복잡하여 인터페이스 선언으로 빌드 단계에서 타입 오류 사전 차단 |
+| **TypeScript** | 5.8.3 | 데이터 구조가 복잡하여 인터페이스 선언으로 빌드 단계에서 타입 오류 사전 차단 |
 | **Tailwind CSS** | 3.4.17 | 유틸리티 클래스로 별도 CSS 파일 없이 컴포넌트 단위 스타일 적용<br>shadcn/ui와 결합해 접근성 기반 컴포넌트를 빠르게 구성 |
 | **Supabase** | 2.86.2 | Auth·DB·Storage·Edge Functions를 단일 서비스로 통합 관리<br>Edge Functions로 AI API 키를 서버에 격리하여 클라이언트 노출 차단 |
 | **TanStack Query** | 5.83.0 | 식약처 API의 영양 데이터를 `staleTime`으로 캐싱하여 중복 네트워크 요청 차단 |
-| **React Hook Form** | 7.61.1 | 회원가입·로그인 폼의 상태 관리를 선언적으로 처리 |
+| **React Hook Form** | 7.61.1 | 회원가입, 로그인 폼의 상태 관리를 선언적으로 처리 |
 | **Zod** | 3.25.76 | React Hook Form과 결합하여 스키마 기반 유효성 검사를 빌드 단계에서 타입 안전하게 처리 |
 | **Remark** | 15.0.1 | 별도 CMS 없이 Markdown 파일을 HTML로 변환하여 블로그 운영<br>remark-gfm으로 GitHub Flavored Markdown 지원, remark-html로 HTML 직렬화 |
-| **GSAP** | 3.14.2 | 랜딩 페이지 ScrollReveal·GridMotion·SpotlightCard 등 스크롤 기반 애니메이션 구현 |
+| **GSAP** | 3.14.2 | 랜딩 페이지 ScrollReveal, GridMotion, SpotlightCard 등 스크롤 기반 애니메이션 구현 |
 
 
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
