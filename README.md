@@ -361,7 +361,7 @@ AI 영양 분석 다이얼로그
 | **TypeScript** | 5.8.3 | 식단·메뉴·영양 데이터 구조가 복잡하여 인터페이스 선언으로 빌드 단계에서 타입 오류 사전 차단 |
 | **Tailwind CSS** | 3.4.17 | 유틸리티 클래스로 별도 CSS 파일 없이 컴포넌트 단위 스타일 적용<br>shadcn/ui와 결합해 접근성 기반 컴포넌트를 빠르게 구성 |
 | **Supabase** | 2.86.2 | Auth·DB·Storage·Edge Functions를 단일 서비스로 통합 관리<br>Edge Functions로 AI API 키를 서버에 격리하여 클라이언트 노출 차단 |
-| **TanStack Query** | 5.83.0 | 식약처 API의 영양 데이터를 `staleTime`으로 캐싱하여 중복 네트워크 요청 차단<br>로딩·에러·성공 상태를 선언적으로 관리 |
+| **TanStack Query** | 5.83.0 | 식약처 API의 영양 데이터를 `staleTime`으로 캐싱하여 중복 네트워크 요청 차단 |
 | **React Hook Form** | 7.61.1 | 회원가입·로그인 폼의 상태 관리를 선언적으로 처리 |
 | **Zod** | 3.25.76 | React Hook Form과 결합하여 스키마 기반 유효성 검사를 빌드 단계에서 타입 안전하게 처리 |
 | **jsPDF** | 3.0.4 | 브라우저에서 서버 의존 없이 주간 식단표를 A4 PDF로 직접 생성<br>jspdf-autotable(5.0.2)로 테이블 레이아웃 자동 렌더링 |
