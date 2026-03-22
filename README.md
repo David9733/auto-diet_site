@@ -376,7 +376,6 @@ AI 영양 분석 다이얼로그
 ![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
 ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
-![next-themes](https://img.shields.io/badge/next--themes-000000?style=for-the-badge&logo=next.js&logoColor=white)
 
 ---
 
