@@ -455,7 +455,8 @@ if (canceled()) return;
 ```
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-NEXT_PUBLIC_FDA_API_KEY=your_fda_api_key
+FDA_API_KEY=your_fda_api_key
+KAT_ONLINE_SERVICE_KEY=your_kat_online_service_key
 TOSS_SECRET_KEY=your_toss_secret_key
 NEXT_PUBLIC_TOSS_CLIENT_KEY=your_toss_client_key
 ```
