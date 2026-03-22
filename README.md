@@ -407,15 +407,7 @@ AI 영양 분석 다이얼로그
 
 ---
 
-## 🚀  로컬 실행 방법
-
-### 사전 요구 사항
-
-- Node.js 18 이상
-- Supabase 프로젝트 (Auth + DB)
-- 식약처 Open API 키
-- KAT Online API 키
-- Toss Payments 키 (결제 기능 사용 시)
+## 🚀 실행 방법
 
 환경변수 설정
 ```
