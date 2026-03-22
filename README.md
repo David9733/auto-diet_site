@@ -407,18 +407,6 @@ AI 영양 분석 다이얼로그
 
 ## 🚀 실행 방법
 
-환경변수 설정
-```
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
-FDA_API_KEY=your_fda_api_key
-KAT_ONLINE_SERVICE_KEY=your_kat_online_service_key
-NEXT_PUBLIC_SITE_URL=your_site_url
-TOSS_SECRET_KEY=your_toss_secret_key
-NEXT_PUBLIC_TOSS_CLIENT_KEY=your_toss_client_key
-```
-
 ### 실행
 
 ```bash
@@ -432,7 +420,17 @@ npm run dev
 npm run build
 npm start
 ```
-
+환경변수 설정
+```
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+FDA_API_KEY=your_fda_api_key
+KAT_ONLINE_SERVICE_KEY=your_kat_online_service_key
+NEXT_PUBLIC_SITE_URL=your_site_url
+TOSS_SECRET_KEY=your_toss_secret_key
+NEXT_PUBLIC_TOSS_CLIENT_KEY=your_toss_client_key
+```
 ---
 
 ## 🌱 향후 개선 계획
