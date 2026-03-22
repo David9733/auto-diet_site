@@ -372,7 +372,6 @@ AI 영양 분석 다이얼로그
 | **GSAP** | 3.14.2 | 랜딩 페이지 ScrollReveal·GridMotion·SpotlightCard 등 스크롤 기반 애니메이션 구현 |
 | **react-day-picker** | 9.13.0 | 식단 날짜 선택 캘린더 UI 컴포넌트 |
 | **lucide-react** | 0.462.0 | 전체 UI 아이콘 시스템; 버튼·메뉴·상태 표시 등 코드 전반에서 아이콘 렌더링에 사용 |
-| **Embla Carousel** | 8.6.0 | 랜딩 페이지 및 대시보드 내 캐러셀 UI 컴포넌트 |
 | **next-themes** | 0.4.6 | 다크/라이트 모드 전환 및 시스템 테마 연동 |
 | **gray-matter** | 4.0.3 | 블로그 Markdown 파일의 frontmatter(제목·날짜·태그 등) 파싱 — Remark와 함께 사용 |
 
