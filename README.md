@@ -369,7 +369,6 @@ AI 영양 분석 다이얼로그
 | **date-fns** | 3.6.0 | 주차별 날짜 계산, 식단 시작일 기준 날짜 포매팅에 사용 |
 | **Sonner** | 1.7.4 | 식단 저장·오류 등 사용자 액션 결과를 토스트로 즉시 피드백 |
 | **Remark** | 15.0.1 | 별도 CMS 없이 Markdown 파일을 HTML로 변환하여 블로그 운영<br>remark-gfm으로 GitHub Flavored Markdown 지원, remark-html로 HTML 직렬화 |
-| **Recharts** | 2.15.4 | 대시보드에서 영양소·비용 데이터를 차트로 시각화 |
 | **GSAP** | 3.14.2 | 랜딩 페이지 ScrollReveal·GridMotion·SpotlightCard 등 스크롤 기반 애니메이션 구현 |
 | **react-day-picker** | 9.13.0 | 식단 날짜 선택 캘린더 UI 컴포넌트 |
 | **lucide-react** | 0.462.0 | 전체 UI 아이콘 시스템; 버튼·메뉴·상태 표시 등 코드 전반에서 아이콘 렌더링에 사용 |
@@ -384,7 +383,6 @@ AI 영양 분석 다이얼로그
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
 ![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
 ![Zod](https://img.shields.io/badge/Zod-3E67B1?style=for-the-badge&logo=zod&logoColor=white)
-![Recharts](https://img.shields.io/badge/Recharts-22B5BF?style=for-the-badge&logo=recharts&logoColor=white)
 ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
 ![next-themes](https://img.shields.io/badge/next--themes-000000?style=for-the-badge&logo=next.js&logoColor=white)
 
