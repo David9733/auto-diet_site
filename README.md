@@ -425,7 +425,9 @@ npm start
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
-NEXT_PUBLIC_FDA_API_KEY=your_fda_api_key                                                                                      KAMIS_CERT_ID=your_kamis_login_id                                                                                             KAMIS_CERT_KEY=your_kamis_api_key
+NEXT_PUBLIC_FDA_API_KEY=your_fda_api_key
+KAMIS_CERT_ID=your_kamis_login_id
+KAMIS_CERT_KEY=your_kamis_api_key
 NEXT_PUBLIC_SITE_URL=your_site_url
 TOSS_SECRET_KEY=your_toss_secret_key
 NEXT_PUBLIC_TOSS_CLIENT_KEY=your_toss_client_key
