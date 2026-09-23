@@ -12,7 +12,7 @@
 |------|------|
 | **개발 기간** | 2025.12 |
 | **프로젝트 유형** | 개인 프로젝트 |
-| **핵심 기술** | Next.js, TypeScript, Supabase, TanStack Query, Tailwind CSS |
+| **핵심 기술** | Next.js, TypeScript, Supabase, Tailwind CSS |
 | **배포 링크** | [바로가기](https://auto-diet.vercel.app/) |
 
 ---
@@ -362,7 +362,6 @@ AI 영양 분석 다이얼로그
 | **TypeScript** | 5.8.3 | 데이터 구조가 복잡하여 인터페이스 선언으로 빌드 단계에서 타입 오류 사전 차단 |
 | **Tailwind CSS** | 3.4.17 | 유틸리티 클래스로 별도 CSS 파일 없이 컴포넌트 단위 스타일 적용<br>shadcn/ui와 결합해 접근성 기반 컴포넌트를 빠르게 구성 |
 | **Supabase** | 2.86.2 | Auth·DB·Storage·Edge Functions를 단일 서비스로 통합 관리<br>Edge Functions로 AI API 키를 서버에 격리하여 클라이언트 노출 차단 |
-| **TanStack Query** | 5.83.0 | 식약처 API의 영양 데이터를 `staleTime`으로 캐싱하여 중복 네트워크 요청 차단 |
 | **Remark** | 15.0.1 | 별도 CMS 없이 Markdown 파일을 HTML로 변환하여 블로그 운영<br>remark-gfm으로 GitHub Flavored Markdown 지원, remark-html로 HTML 직렬화 |
 | **GSAP** | 3.14.2 | 랜딩 페이지 ScrollReveal, GridMotion, SpotlightCard 등 스크롤 기반 애니메이션 구현 |
 
@@ -372,7 +371,6 @@ AI 영양 분석 다이얼로그
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
 ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-![TanStack Query](https://img.shields.io/badge/TanStack_Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white)
 ![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
 
 ---
