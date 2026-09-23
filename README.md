@@ -350,6 +350,7 @@ AI 영양 분석 다이얼로그
 **식단 변경**
 
 ![Image](https://github.com/user-attachments/assets/a70a80c5-e60b-4205-bef9-1dab62fb7599)
+
 ---
 
 
