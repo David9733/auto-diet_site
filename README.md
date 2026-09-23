@@ -332,7 +332,7 @@ AI 영양 분석 다이얼로그
 
 서비스 이용 패턴과 사용자 행동 데이터를 수집해 기능 개선 의사결정에 활용합니다.
 
-- 페이지별 체류 시간, 이탈률로 식단 생성 → 영양 분석 → 메뉴 변경 사용 흐름 파악
+- 체류 시간, 이탈률로 사용자의 서비스 이용 시간 파악
 - 재방문율, 세션 빈도 추적으로 서비스 지속 사용성 평가
 - 기기, 브라우저 분포 확인 → 모바일/데스크탑 최적화 우선순위 결정
 - 유입 경로(직접, 검색, 소셜) 분석으로 실제 사용자 유입 채널 파악
@@ -361,7 +361,7 @@ AI 영양 분석 다이얼로그
 | **Next.js** | 16.0.10 | API Route 프록시로 공공 API 키를 서버에만 보관하고 CORS 문제해결<br>Toss Payments 결제 승인을 서버에서 처리 |
 | **TypeScript** | 5.8.3 | 데이터 구조가 복잡하여 인터페이스 선언으로 빌드 단계에서 타입 오류 사전 차단 |
 | **Tailwind CSS** | 3.4.17 | 유틸리티 클래스로 별도 CSS 파일 없이 컴포넌트 단위 스타일 적용<br>shadcn/ui와 결합해 접근성 기반 컴포넌트를 빠르게 구성 |
-| **Supabase** | 2.86.2 | Auth·DB·Storage·Edge Functions를 단일 서비스로 통합 관리<br>Edge Functions로 AI API 키를 서버에 격리하여 클라이언트 노출 차단 |
+| **Supabase** | 2.86.2 | Auth·DB·Edge Functions를 단일 서비스로 통합 관리<br>Edge Functions로 AI API 키를 서버에 격리하여 클라이언트 노출 차단 |
 | **Remark** | 15.0.1 | 별도 CMS 없이 Markdown 파일을 HTML로 변환하여 블로그 운영<br>remark-gfm으로 GitHub Flavored Markdown 지원, remark-html로 HTML 직렬화 |
 | **GSAP** | 3.14.2 | 랜딩 페이지 ScrollReveal, GridMotion, SpotlightCard 등 스크롤 기반 애니메이션 구현 |
 
