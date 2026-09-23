@@ -358,7 +358,7 @@ AI 영양 분석 다이얼로그
 | 기술 | 버전 | 선택 이유 |
 |------|------|-----------|
 | **React** | 19.2.3 | hooks 기반 컴포넌트 모델과 React 19의 concurrent 렌더링으로 UI 응답성 유지 |
-| **Next.js** | 16.0.10 |  API Route로 공공 API 키를 서버에만 보관하여 CORS 문제 해결<br>Toss Payments 결제 승인을 서버에서 처리 |
+| **Next.js** | 16.0.10 | API Route 프록시로 공공 API 키를 서버에만 보관하고 CORS 문제해결<br>Toss Payments 결제 승인을 서버에서 처리 |
 | **TypeScript** | 5.8.3 | 데이터 구조가 복잡하여 인터페이스 선언으로 빌드 단계에서 타입 오류 사전 차단 |
 | **Tailwind CSS** | 3.4.17 | 유틸리티 클래스로 별도 CSS 파일 없이 컴포넌트 단위 스타일 적용<br>shadcn/ui와 결합해 접근성 기반 컴포넌트를 빠르게 구성 |
 | **Supabase** | 2.86.2 | Auth·DB·Storage·Edge Functions를 단일 서비스로 통합 관리<br>Edge Functions로 AI API 키를 서버에 격리하여 클라이언트 노출 차단 |
