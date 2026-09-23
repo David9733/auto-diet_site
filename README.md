@@ -23,7 +23,7 @@
 "반복되는 식단 고민, 시스템이 짠다."
 
 영양사가 매번 식단을 짜고 영양·원가를 따로 계산하는 반복 업무를 없애기 위해 개발한 식단 자동화 서비스입니다.<br>
-식약처 영양 DB와 농수산식품유통공사 시세 데이터를 연동해 식단 생성부터 영양·원가 확인까지 자동화합니다.<br>
+식약처 영양 DB와 KAMIS(농산물유통정보) 시세 데이터를 연동해 식단 생성부터 영양·원가 확인까지 자동화합니다.<br>
 영양사 인턴 경험을 기반으로 실제 급식소 운영 흐름을 반영해 설계되었으며, 사용자 관점에서 기능 검증을 진행했습니다.
 
 | 구분 | 내용 |
@@ -426,8 +426,8 @@ npm start
 NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
-FDA_API_KEY=your_fda_api_key
-KAT_ONLINE_SERVICE_KEY=your_kat_online_service_key
+NEXT_PUBLIC_FDA_API_KEY=your_fda_api_key                                                                                                                            KAMIS_CERT_ID=your_kamis_login_id                                                                                                                              
+KAMIS_CERT_KEY=your_kamis_api_key
 NEXT_PUBLIC_SITE_URL=your_site_url
 TOSS_SECRET_KEY=your_toss_secret_key
 NEXT_PUBLIC_TOSS_CLIENT_KEY=your_toss_client_key
