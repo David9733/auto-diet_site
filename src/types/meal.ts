@@ -12,6 +12,7 @@ export interface MenuItem {
   mainIngredients?: string[]; // 주재료 (중복 방지용)
   isCustom?: boolean; // 직접 입력 여부
   weight?: number; // 출현 빈도 가중치 (기본값: 1, 높을수록 자주 나옴)
+  priceTrend?: 'up' | 'down' | 'flat'; // KAMIS 시세 등락 (실시간 원가 반영 시에만 설정)
 }
 
 export type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack_morning' | 'snack_afternoon' | 'snack_evening';

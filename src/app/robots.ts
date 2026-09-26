@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
         userAgent: "*",
         allow: "/",
         // 검색 노출이 필요 없는 경로들(로그인/내부 API/테스트 페이지 등)
-        disallow: ["/auth", "/api", "/test-fda", "/test-kat-online", "/variations"],
+        disallow: ["/auth", "/api", "/test-fda", "/test-kamis", "/variations"],
       },
     ],
     host: siteUrl,

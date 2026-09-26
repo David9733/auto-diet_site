@@ -20,6 +20,10 @@ export function CostDetails({ meal, settings }: CostDetailsProps) {
   const hasErrors = summary.warnings.some(w => w.severity === 'error');
   const costPercentage = Math.min((summary.breakdown.total / summary.budgetLimit) * 100, 150);
 
+  // KAMIS 시세 등락 요약 (하나라도 상승이면 상승으로, 아니면 하락/보합 중 우선순위대로 표시)
+  const trends = [meal.rice, meal.soup, ...meal.sideDishes].map(item => item.priceTrend).filter(Boolean);
+  const priceTrend = trends.includes('up') ? 'up' : trends.includes('down') ? 'down' : trends.includes('flat') ? 'flat' : undefined;
+
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -60,12 +64,24 @@ export function CostDetails({ meal, settings }: CostDetailsProps) {
           <div className="space-y-2">
             <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">총 원가</span>
-              <span className={cn(
-                'font-bold text-lg',
-                hasErrors ? 'text-destructive' : hasWarnings ? 'text-warning' : ''
-              )}>
-                {summary.breakdown.total.toLocaleString()}원
-              </span>
+              <div className="flex items-center gap-1.5">
+                {priceTrend === 'up' && (
+                  <span className="flex items-center text-xs text-destructive" title="KAMIS 시세 상승">
+                    <TrendingUp className="w-3.5 h-3.5" />
+                  </span>
+                )}
+                {priceTrend === 'down' && (
+                  <span className="flex items-center text-xs text-emerald-500" title="KAMIS 시세 하락">
+                    <TrendingDown className="w-3.5 h-3.5" />
+                  </span>
+                )}
+                <span className={cn(
+                  'font-bold text-lg',
+                  hasErrors ? 'text-destructive' : hasWarnings ? 'text-warning' : ''
+                )}>
+                  {summary.breakdown.total.toLocaleString()}원
+                </span>
+              </div>
             </div>
             <div className="relative">
               <Progress 

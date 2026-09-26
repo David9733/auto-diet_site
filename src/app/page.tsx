@@ -231,7 +231,7 @@ export default function Index() {
       console.log('✅ 영양 정보 보강 완료');
       
       // 2단계: 원가 정보 보강
-      console.log('🔄 katOnline API로 원가 정보 보강 시작...');
+      console.log('🔄 KAMIS API로 원가 정보 보강 시작...');
       
       const fullyEnrichedPlans = await Promise.all(
         nutritionEnrichedPlans.map(plan => enrichWeekCost(plan))

@@ -3,7 +3,7 @@ Allow: /
 Disallow: /auth
 Disallow: /api/
 Disallow: /test-fda
-Disallow: /test-kat-online
+Disallow: /test-kamis
 Disallow: /variations
 
 User-agent: Bingbot
@@ -11,7 +11,7 @@ Allow: /
 Disallow: /auth
 Disallow: /api/
 Disallow: /test-fda
-Disallow: /test-kat-online
+Disallow: /test-kamis
 Disallow: /variations
 
 User-agent: Twitterbot
@@ -19,7 +19,7 @@ Allow: /
 Disallow: /auth
 Disallow: /api/
 Disallow: /test-fda
-Disallow: /test-kat-online
+Disallow: /test-kamis
 Disallow: /variations
 
 User-agent: facebookexternalhit
@@ -27,7 +27,7 @@ Allow: /
 Disallow: /auth
 Disallow: /api/
 Disallow: /test-fda
-Disallow: /test-kat-online
+Disallow: /test-kamis
 Disallow: /variations
 
 User-agent: *
@@ -35,7 +35,7 @@ Allow: /
 Disallow: /auth
 Disallow: /api/
 Disallow: /test-fda
-Disallow: /test-kat-online
+Disallow: /test-kamis
 Disallow: /variations
 
 Host: auto-diet.vercel.app

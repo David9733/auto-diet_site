@@ -164,7 +164,7 @@ export function getRateLimiter(): RateLimiter {
  * Rate Limit 프리셋
  */
 export const RATE_LIMIT_PRESETS = {
-  // 공공 API (FDA, katOnline) - 식단 생성 시 대량 호출 지원
+  // 공공 API (FDA, KAMIS) - 식단 생성 시 대량 호출 지원
   publicAPI: {
     maxTokens: 100,     // 최대 100개 토큰 (90개 메뉴 한번에 처리)
     refillRate: 20,     // 초당 20개 재충전 (빠른 연속 조회)

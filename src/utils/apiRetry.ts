@@ -142,9 +142,9 @@ export async function fetchWithRetry(
 
         const code = details?.code;
         const nonRetryable =
-          code === 'KAT_ONLINE_KEY_MISSING' ||
-          code === 'KAT_ONLINE_UNAUTHORIZED' ||
-          (typeof details?.error === 'string' && details.error.includes('KAT_ONLINE_SERVICE_KEY'));
+          code === 'KAMIS_KEY_MISSING' ||
+          code === 'KAMIS_UNAUTHORIZED' ||
+          (typeof details?.error === 'string' && details.error.includes('KAMIS_CERT'));
 
         throw makeHttpError(`HTTP ${response.status}`, {
           status: response.status,
