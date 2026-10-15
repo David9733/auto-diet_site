@@ -1,3 +1,5 @@
+<img width="240" height="128" alt="202610151429 (1)" src="https://github.com/user-attachments/assets/fbe1e71d-de5d-4862-841c-82e9a8b4df62" />
+
 <img width="1344" height="483" alt="Image" src="https://github.com/user-attachments/assets/c8f1921c-69f0-4665-9c02-d213096feaee" />
 
 # auto-diet 웹사이트
